@@ -1,11 +1,16 @@
 import { nanoid } from 'nanoid';
 import css from './Filter.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateFilter } from 'redux/slice';
 
-function Filter({ onChange }) {
+function Filter() {
   const filter = useSelector(state => state.contacts.filter);
-
+  const dispatch = useDispatch();
   const filterInputId = nanoid();
+
+  const handleChange = ({ target: { value } }) => {
+    dispatch(updateFilter(value.toLocaleLowerCase()));
+  };
 
   return (
     <div className={css.filter}>
@@ -17,7 +22,7 @@ function Filter({ onChange }) {
         type="text"
         name="filter"
         id={filterInputId}
-        onChange={onChange}
+        onChange={handleChange}
         value={filter}
       />
     </div>
