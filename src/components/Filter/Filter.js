@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateFilter } from 'redux/slice';
 
 function Filter() {
-  const filter = useSelector(state => state.contacts.filter);
+  const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
   const filterInputId = nanoid();
 
